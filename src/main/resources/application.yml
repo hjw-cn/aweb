@@ -3,10 +3,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/aweb
-    username: root
-    password: rootroot
-
+    url: jdbc:mysql://rm-2zexpg78696o0ib7jeo.mysql.rds.aliyuncs.com:3306/aweb
+    username: aweb
+    password: aweb!@#123
   security:
     user:
       name: user
