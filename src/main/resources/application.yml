@@ -10,5 +10,16 @@ spring:
     user:
       name: user
       password: 123
+  mvc:
+    view:
+      prefix: /jsp/
+      suffix: .jsp
+
+#  thymeleaf:
+#    cache: false
+#    prefix: classpath:/templates/
+#    suffix: .jsp
+#    mode: HTML5
+#    encoding: UTF-8
 mybatis-plus:
   mapper-locations: classpath:/mapper/*Mapper.xml
