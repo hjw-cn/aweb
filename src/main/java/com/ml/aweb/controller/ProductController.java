@@ -2,7 +2,6 @@ package com.ml.aweb.controller;
 
 import com.ml.aweb.dao.ProductDAO;
 import com.ml.aweb.entity.Product;
-import org.elasticsearch.index.query.MatchAllQueryBuilder;
 import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;

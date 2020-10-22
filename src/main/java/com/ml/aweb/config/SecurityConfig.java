@@ -41,11 +41,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        http.addFilterBefore(verifyCodeFilter, UsernamePasswordAuthenticationFilter.class);
 
         http.authorizeRequests()
-                .antMatchers("/hello").hasRole("admin")
+                .antMatchers("/js/**","/img/**","/css/**","/register").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login.html")
+                .loginPage("/fore/login")
+                .loginPage("/login")
                 .loginProcessingUrl("/doLogin")
                 .successHandler(new AuthenticationSuccessHandler() {
                     @Override

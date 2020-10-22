@@ -35,6 +35,6 @@ public class CustomerUserDetailService implements UserDetailsService {
         session.setAttribute("sessusername",username);
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-        return new org.springframework.security.core.userdetails.User(user.getUsername(),user.getPassword(),authorities);
+        return new org.springframework.security.core.userdetails.User(user.getName(),user.getPassword(),authorities);
     }
 }

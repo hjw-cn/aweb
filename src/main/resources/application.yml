@@ -6,20 +6,19 @@ spring:
     url: jdbc:mysql://rm-2zexpg78696o0ib7jeo.mysql.rds.aliyuncs.com:3306/aweb
     username: aweb
     password: aweb!@#123
-  security:
-    user:
-      name: user
-      password: 123
-  mvc:
-    view:
-      prefix: /jsp/
-      suffix: .jsp
+#  security:
+#    user:
+#      name: user
+#      password: 123
+#  mvc:
+#    view:
+#      prefix: /jsp/
+#      suffix: .jsp
 
-#  thymeleaf:
-#    cache: false
-#    prefix: classpath:/templates/
-#    suffix: .jsp
-#    mode: HTML5
-#    encoding: UTF-8
+  thymeleaf:
+    cache: false
+    mode: LEGACYHTML5
+    encoding: UTF-8
+
 mybatis-plus:
   mapper-locations: classpath:/mapper/*Mapper.xml
