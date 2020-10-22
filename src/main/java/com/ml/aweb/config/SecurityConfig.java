@@ -1,7 +1,10 @@
 package com.ml.aweb.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ml.aweb.filter.VerifyCodeFilter;
 import com.ml.aweb.service.CustomerUserDetailService;
+import com.ml.aweb.util.Result;
+import org.apache.tomcat.util.http.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -41,19 +44,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        http.addFilterBefore(verifyCodeFilter, UsernamePasswordAuthenticationFilter.class);
 
         http.authorizeRequests()
-                .antMatchers("/js/**","/img/**","/css/**","/register").permitAll()
+                .antMatchers("/js/**","/img/**","/css/**","/*register*","/*login*").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/fore/login")
                 .loginPage("/login")
                 .loginProcessingUrl("/doLogin")
+                .usernameParameter("name")
                 .successHandler(new AuthenticationSuccessHandler() {
                     @Override
                     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
                         response.setContentType("application/json;charset=utf-8");
                         PrintWriter out = response.getWriter();
-                        out.write("success");
+                        ObjectMapper mapper = new ObjectMapper();
+                        String s = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(Result.success());
+                        out.print(s);
                         out.flush();
                     }
                 })
@@ -86,17 +91,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable();
     }
 
-    // 内置用户
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         PasswordEncoder passwordEncoder = passwordEncoder();
-        System.out.println("=============================================");
-        System.out.println(passwordEncoder.encode("123456"));
-        System.out.println("=============================================");
-
         auth.userDetailsService(customUserService()).passwordEncoder(passwordEncoder);
-        auth.inMemoryAuthentication().passwordEncoder(passwordEncoder).withUser("sqlboy").roles("admin").password(passwordEncoder.encode("123456"))
-                .and().withUser("javaboy").roles("user").password("$2a$10$OR3VSksVAmCzc.7WeaRPR.t0wyCsIj24k0Bne8iKWV1o.V9wsP8Xe");
+
+        // 内置用户
+//        auth.inMemoryAuthentication().passwordEncoder(passwordEncoder).withUser("sqlboy").roles("admin").password(passwordEncoder.encode("123456"))
+//                .and().withUser("javaboy").roles("user").password("$2a$10$OR3VSksVAmCzc.7WeaRPR.t0wyCsIj24k0Bne8iKWV1o.V9wsP8Xe");
     }
 
     @Bean

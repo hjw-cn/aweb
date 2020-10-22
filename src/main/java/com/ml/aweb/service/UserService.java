@@ -10,8 +10,9 @@ import org.springframework.stereotype.Service;
  * @author hanjiawei
  * @date 2020-10-22
  */
-
+@Service
 public class UserService {
+
     @Autowired
     UserMapper userMapper;
 

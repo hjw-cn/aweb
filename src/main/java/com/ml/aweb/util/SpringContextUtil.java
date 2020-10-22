@@ -10,7 +10,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
-import com.how2java.tmall.service.OrderService;
+//import com.how2java.tmall.service.OrderService;
 
 @Component
 public class SpringContextUtil implements ApplicationContextAware {
