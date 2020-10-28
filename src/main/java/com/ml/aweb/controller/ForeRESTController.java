@@ -2,16 +2,16 @@ package com.ml.aweb.controller;
 
 
 import com.ml.aweb.entity.Category;
+import com.ml.aweb.entity.Product;
 import com.ml.aweb.entity.User;
+import com.ml.aweb.service.CategoryService;
+import com.ml.aweb.service.ProductService;
 import com.ml.aweb.service.UserService;
 import com.ml.aweb.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,6 +19,11 @@ import java.util.List;
 public class ForeRESTController{
     @Autowired
     UserService userService;
+    @Autowired
+    CategoryService categoryService;
+    @Autowired
+    ProductService productService;
+
 
     @PostMapping("/foreregister")
     public Object register(@RequestBody User user){
@@ -40,7 +45,12 @@ public class ForeRESTController{
         productService.fill(cs);
         productService.fillByRow(cs);
         categoryService.removeCategoryFromProduct(cs);
-
         return cs;
+    }
+
+    @GetMapping("/foreproduct/{pid}")
+    public Object foreProduct(@PathVariable Long pid){
+        Product product = productService.getProductById(pid);
+
     }
 }

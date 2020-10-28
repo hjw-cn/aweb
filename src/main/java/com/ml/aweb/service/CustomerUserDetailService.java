@@ -2,7 +2,7 @@ package com.ml.aweb.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ml.aweb.entity.User;
-import com.ml.aweb.mapper.UserMapper;
+import com.ml.aweb.dao.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import java.util.LinkedList;
 
 @SpringBootApplication
-@MapperScan("com.ml.aweb.mapper")
+@MapperScan("com.ml.aweb.dao")
 public class AwebApplication {
 
 	public static void main(String[] args) {

@@ -1,7 +1,10 @@
 package com.ml.aweb.entity;
 
 
-public class Productimage {
+import com.baomidou.mybatisplus.annotation.TableName;
+
+@TableName("productimage")
+public class ProductImage {
 
   private long id;
   private long pid;

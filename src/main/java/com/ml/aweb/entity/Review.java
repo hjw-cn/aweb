@@ -1,12 +1,22 @@
 package com.ml.aweb.entity;
 
 
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Review {
 
   private long id;
   private String content;
-  private long uid;
-  private long pid;
+  @ManyToOne
+  @JoinColumn(name="uid")
+  private User user;
+
+  @ManyToOne
+  @JoinColumn(name="pid")
+  private Product product;
   private java.sql.Timestamp createDate;
 
 
@@ -28,23 +38,6 @@ public class Review {
   }
 
 
-  public long getUid() {
-    return uid;
-  }
-
-  public void setUid(long uid) {
-    this.uid = uid;
-  }
-
-
-  public long getPid() {
-    return pid;
-  }
-
-  public void setPid(long pid) {
-    this.pid = pid;
-  }
-
 
   public java.sql.Timestamp getCreateDate() {
     return createDate;
@@ -54,4 +47,19 @@ public class Review {
     this.createDate = createDate;
   }
 
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
+
+  public Product getProduct() {
+    return product;
+  }
+
+  public void setProduct(Product product) {
+    this.product = product;
+  }
 }

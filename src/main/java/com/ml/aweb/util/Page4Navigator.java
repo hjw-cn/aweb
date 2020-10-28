@@ -8,10 +8,11 @@ package com.ml.aweb.util;
  
 import java.util.List;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.springframework.data.domain.Page;
  
 public class Page4Navigator<T> {
-    Page<T> pageFromJPA;
+    IPage<T> iPage;
     int navigatePages;
      
     int totalPages;
@@ -42,31 +43,31 @@ public class Page4Navigator<T> {
         //这个空的分页是为了 Redis 从 json格式转换为 Page4Navigator 对象而专门提供的
     }
      
-    public Page4Navigator(Page<T> pageFromJPA,int navigatePages) {
-        this.pageFromJPA = pageFromJPA;
+    public Page4Navigator(IPage<T> iPage, int navigatePages) {
+        this.iPage = iPage;
         this.navigatePages = navigatePages;
+
+        totalPages = (int) iPage.getPages();
          
-        totalPages = pageFromJPA.getTotalPages();
+        number  = (int) iPage.getCurrent();
          
-        number  = pageFromJPA.getNumber() ;
+        totalElements = iPage.getTotal();
          
-        totalElements = pageFromJPA.getTotalElements();
+        size = (int) iPage.getSize();
          
-        size = pageFromJPA.getSize();
+        numberOfElements = (int) iPage.getSize();
          
-        numberOfElements = pageFromJPA.getNumberOfElements();
+        content = iPage.getRecords();
          
-        content = pageFromJPA.getContent();
-         
-        isHasContent = pageFromJPA.hasContent();
+        isHasContent = iPage.isHitCount();
                  
-        first = pageFromJPA.isFirst();
+        first = iPage.getCurrent() == 1;
          
-        last = pageFromJPA.isLast();
+        last = iPage.getCurrent() == iPage.getPages();
          
-        isHasNext = pageFromJPA.hasNext();
+        isHasNext = iPage.getCurrent() < iPage.getPages();
          
-        isHasPrevious  = pageFromJPA.hasPrevious();       
+        isHasPrevious  = iPage.getCurrent() > 1;
          
         calcNavigatepageNums();
          

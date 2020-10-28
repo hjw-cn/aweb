@@ -1,4 +1,4 @@
-package com.ml.aweb.mapper;
+package com.ml.aweb.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.ml.aweb.entity.User;

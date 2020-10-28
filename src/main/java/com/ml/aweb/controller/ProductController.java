@@ -1,6 +1,6 @@
 package com.ml.aweb.controller;
 
-import com.ml.aweb.dao.ProductDAO;
+import com.ml.aweb.dao.ProductTDAO;
 import com.ml.aweb.entity.Product;
 import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class ProductController {
     @Autowired
-    ProductDAO productDAO;
+    ProductTDAO productTDAO;
 
     // 每页数量
     @GetMapping("/listProduct")
@@ -34,7 +34,7 @@ public class ProductController {
     {
         String query = "商品";
         NativeSearchQuery searchQuery = getEntitySearchQuery(start, size, query);
-        Page<Product> page = productDAO.search(searchQuery);
+        Page<Product> page = productTDAO.search(searchQuery);
         m.addAttribute("page",page);
         return "listProduct";
     }
@@ -50,4 +50,6 @@ public class ProductController {
                 .withPageable(pageable)
                 .withQuery(matchQueryBuilder).build();
     }
+
+
 }
